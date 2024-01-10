@@ -4,28 +4,30 @@
       <BaseInput placeholder="Search" v-model="search"></BaseInput>
       <BaseButton @click="handleSort">Sort by Title</BaseButton>
     </div>
-    <table>
-      <tr v-if="displayTickets.length">
-        <th>Author</th>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Date</th>
-        <th></th>
-      </tr>
-      <tr v-for="ticket in displayTickets" :key="ticket.id">
-        <td>{{ ticket.author.firstName }} {{ ticket.author.lastName }}</td>
-        <td>{{ ticket.id }}</td>
-        <td>{{ ticket.title }}</td>
-        <td>{{ ticket.content.slice(0, 30) }}...</td>
-        <td>{{ ticket.date }}</td>
-        <td>
-          <NuxtLink :to="'/tickets/' + ticket.id">
-            <BaseButton>View Details</BaseButton>
-          </NuxtLink>
-        </td>
-      </tr>
-    </table>
+    <div class="tableContainer">
+      <table>
+        <tr v-if="displayTickets.length">
+          <th>Author</th>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+        <tr v-for="ticket in displayTickets" :key="ticket.id">
+          <td>{{ ticket.author.firstName }} {{ ticket.author.lastName }}</td>
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.title }}</td>
+          <td>{{ ticket.content.slice(0, 30) }}...</td>
+          <td>{{ ticket.date }}</td>
+          <td>
+            <NuxtLink :to="'/tickets/' + ticket.id">
+              <BaseButton>View Details</BaseButton>
+            </NuxtLink>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -97,5 +99,25 @@ th {
 
 tr {
   border-bottom: 1px solid #ddd;
+}
+
+@media(max-width: 1024px) {
+  .container {
+    max-width: 80%;
+  }
+}
+@media(max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+  .tableContainer {
+    overflow: scroll;
+  }
+  table {
+    font-size: 12px;
+  }
+  .customize {
+    padding: 0 20px;
+  }
 }
 </style>

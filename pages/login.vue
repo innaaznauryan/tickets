@@ -82,4 +82,10 @@ h2 {
   color: red;
   padding: 10px;
 }
+
+@media (max-width: 768px) {
+  .form-container form {
+    width: 70%;
+  }
+}
 </style>

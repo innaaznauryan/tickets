@@ -16,7 +16,7 @@
             v-model="profile.birthday"
             format="yyyy-MM-dd"
             :disabled="!!ticketId"
-            class="CustomCalendar">
+            class="customCalendar">
         </VueDatePicker>
       </div>
       <div>
@@ -74,11 +74,9 @@ watch(
       await getUser()
       if (user.value.id === id) {
         profile.value = user.value
-        console.log(profile.value)
       } else {
         await getSingleTicket(ticketId)
         profile.value = singleTicket.value.author
-        console.log(profile.value.city)
       }
       loading.value = false
     },
@@ -115,12 +113,12 @@ form {
 
     textarea {
       resize: none;
-      width: 80%;
+      width: 70%;
       height: 100px;
     }
 
     select, input {
-      width: 30%;
+      width: 70%;
     }
 
     select, textarea {
@@ -129,11 +127,26 @@ form {
       border: 1px solid #ddd;
       font-family: inherit;
     }
+
+    label {
+      width: 30%;
+    }
   }
 }
 
-.CustomCalendar {
-  width: 30%;
+.customCalendar {
+  width: 70%;
   font-family: inherit;
+}
+
+@media(max-width: 1024px) {
+  .profileContainer {
+    width: 70%;
+  }
+}
+@media(max-width: 768px) {
+  .profileContainer {
+    width: 90%;
+  }
 }
 </style>

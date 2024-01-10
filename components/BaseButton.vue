@@ -18,5 +18,13 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-family: inherit;
+  font-size: 16px;
+  user-select: none;
+}
+
+@media(max-width: 768px) {
+  button {
+    font-size: 12px;
+  }
 }
 </style>

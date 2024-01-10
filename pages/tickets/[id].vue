@@ -57,23 +57,33 @@ definePageMeta({
 
   .ticketField {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    gap: 10px;
 
     h2 {
       color: #0e134f;
       font-size: 20px;
+      width: 30%;
     }
 
     span {
-      text-align: end;
+      width: 70%;
     }
 
     a {
       font-weight: 600;
     }
+  }
+}
+
+@media(max-width: 1024px) {
+  .ticketContainer {
+    width: 70%;
+  }
+}
+@media(max-width: 768px) {
+  .ticketContainer {
+    width: 90%;
   }
 }
 </style>
