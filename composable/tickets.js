@@ -22,5 +22,10 @@ export const getSingleTicket = async (id) => {
     } catch (error) {
         console.log(error)
         ticketsError.value = "Something went wrong"
+        throw createError({
+            statusCode: error.response.status,
+            statusMessage: error.response.status === 404 ? "Page not found" : "Something went wrong",
+            fatal: true
+        })
     }
 }
