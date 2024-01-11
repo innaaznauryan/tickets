@@ -1,9 +1,11 @@
 <template>
-  <div class="breadcrumbs">
-    <NuxtLink v-for="(crumb, index) in breadcrumbs" :to="crumb.path">
-      {{ crumb.name }}
-      <span v-if="index + 1 < breadcrumbs.length">></span>
-    </NuxtLink>
+  <div v-if="!loading" class="container">
+    <div class="breadcrumbs">
+      <div v-for="(crumb, index) in breadcrumbs">
+        <NuxtLink :to="crumb.path">{{ crumb.name }}</NuxtLink>
+        <span v-if="index + 1 < breadcrumbs.length">></span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -12,24 +14,34 @@ import {watchEffect} from "vue"
 
 const route = useRoute()
 const breadcrumbs = ref([])
+const loading = ref(true)
 
 watchEffect(() => {
   breadcrumbs.value = route.meta.breadcrumbs
+})
+
+onMounted(() => {
+  loading.value = false
 })
 </script>
 
 <style lang="scss" scoped>
 .breadcrumbs {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 a {
-  color: #0e134f;
   padding: 20px 0;
+  display: inline-block;
+  transition: .5s;
 
-  span {
-    padding: 10px;
+  &:hover {
+    color: #67948c;
   }
+}
+
+span {
+  padding: 20px;
 }
 </style>

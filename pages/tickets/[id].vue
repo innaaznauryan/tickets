@@ -62,8 +62,9 @@ definePageMeta({
 
     h2 {
       color: #0e134f;
-      font-size: 20px;
+      font-size: 16px;
       width: 30%;
+      font-weight: 400;
     }
 
     span {
@@ -72,6 +73,11 @@ definePageMeta({
 
     a {
       font-weight: 600;
+      transition: .5s;
+
+      &:hover {
+        color: #67948c;
+      }
     }
   }
 }
@@ -81,6 +87,7 @@ definePageMeta({
     width: 70%;
   }
 }
+
 @media(max-width: 768px) {
   .ticketContainer {
     width: 90%;

@@ -5,7 +5,7 @@ export const tickets = ref([])
 export const singleTicket = ref(null)
 export const ticketsError = ref(null)
 
-export const getTickets = async() => {
+export const getTickets = async () => {
     try {
         const response = await apiClient.get("/tickets")
         tickets.value = response.data
@@ -15,7 +15,7 @@ export const getTickets = async() => {
     }
 }
 
-export const getSingleTicket = async(id) => {
+export const getSingleTicket = async (id) => {
     try {
         const response = await apiClient.get("/tickets/" + id)
         singleTicket.value = response.data

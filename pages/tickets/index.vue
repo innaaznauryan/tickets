@@ -1,21 +1,26 @@
 <template>
   <div v-if="!loading" class="container">
     <div class="customize">
-      <BaseInput placeholder="Search" v-model="search"></BaseInput>
+      <BaseInput placeholder="Search by Title" v-model="search"></BaseInput>
       <BaseButton @click="handleSort">Sort by Title</BaseButton>
     </div>
     <div class="tableContainer">
       <table>
         <tr v-if="displayTickets.length">
           <th>Author</th>
-          <th>Id</th>
+          <th>Ticket Id</th>
           <th>Title</th>
           <th>Content</th>
-          <th>Date</th>
+          <th>Created Date</th>
           <th></th>
         </tr>
         <tr v-for="ticket in displayTickets" :key="ticket.id">
-          <td>{{ ticket.author.firstName }} {{ ticket.author.lastName }}</td>
+          <td>
+            <NuxtLink
+                :to="{path: '/' + ticket.author.id, query: {ticketId: ticket.id}}">
+              {{ ticket.author.firstName }} {{ ticket.author.lastName }}
+            </NuxtLink>
+          </td>
           <td>{{ ticket.id }}</td>
           <td>{{ ticket.title }}</td>
           <td>{{ ticket.content.slice(0, 30) }}...</td>
@@ -32,12 +37,12 @@
 </template>
 
 <script setup>
-import {ref, computed} from "vue"
+import {ref, computed, onMounted} from "vue"
 import {getTickets, tickets} from "~/composable/tickets.js"
 
 const loading = ref(true)
 const search = ref(null)
-const sorted = ref(false)
+const toggleSort = ref(false)
 const displayTickets = computed(() => {
   return search.value ? tickets.value.filter(ticket => ticket.title.toLowerCase().includes(search.value.toLowerCase())) : tickets.value
 })
@@ -45,17 +50,19 @@ const displayTickets = computed(() => {
 const handleSort = () => {
   tickets.value.sort((a, b) => {
     if (a.title.toLowerCase() < b.title.toLowerCase()) {
-      return sorted.value ? -1 : 1
+      return toggleSort.value ? -1 : 1
     } else if (a.title > b.title) {
-      return sorted.value ? 1 : -1
+      return toggleSort.value ? 1 : -1
     }
     return 0
   })
-  sorted.value = !sorted.value
+  toggleSort.value = !toggleSort.value
 }
 
 await getTickets()
-loading.value = false
+onMounted(() => {
+  loading.value = false
+})
 
 definePageMeta({
   breadcrumbs: [
@@ -80,11 +87,6 @@ table {
   width: 100%;
 }
 
-a {
-  color: #edebd9;
-  transition: .5s;
-}
-
 th {
   padding: 20px;
 }
@@ -95,29 +97,33 @@ td {
 
 th {
   color: #0e134f;
+  white-space: nowrap;
 }
 
 tr {
   border-bottom: 1px solid #ddd;
 }
 
-@media(max-width: 1024px) {
-  .container {
-    max-width: 80%;
+button {
+  white-space: nowrap;
+}
+
+a {
+  font-weight: 600;
+  transition: .5s;
+
+  &:hover {
+    color: #67948c;
   }
 }
-@media(max-width: 768px) {
-  .container {
-    max-width: 100%;
-  }
+
+@media (max-width: 768px) {
   .tableContainer {
-    overflow: scroll;
+    overflow-x: scroll;
   }
+
   table {
     font-size: 12px;
-  }
-  .customize {
-    padding: 0 20px;
   }
 }
 </style>

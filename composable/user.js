@@ -3,6 +3,7 @@ import apiClient from "~/apiClient.js"
 
 export const user = ref(null)
 export const userError = ref(null)
+export const isLoggedIn = ref(false)
 
 export const getUser = async () => {
     try {

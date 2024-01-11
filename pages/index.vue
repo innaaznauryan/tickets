@@ -1,9 +1,15 @@
 <template>
-  <h1>Welcome!</h1>
+  <h1 v-if="!loading">Welcome!</h1>
 </template>
 
 <script setup>
+import {ref, onMounted} from "vue"
 
+const loading = ref(true)
+
+onMounted(() => {
+  loading.value = false
+})
 </script>
 
 <style scoped>
