@@ -12,8 +12,12 @@
       </div>
     </div>
   </nav>
-  <Breadcrumbs/>
-  <slot/>
+  <div class="container">
+    <Breadcrumbs/>
+  </div>
+  <div class="container">
+    <slot/>
+  </div>
 </template>
 
 <script setup>
@@ -60,7 +64,7 @@ nav {
   }
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 1280px) {
   .container {
     max-width: 80%;
   }

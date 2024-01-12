@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading" class="container">
+  <div v-if="!loading">
     <div class="customize">
       <BaseInput placeholder="Search by Title" v-model="search"></BaseInput>
       <BaseButton @click="handleSort">Sort by Title</BaseButton>

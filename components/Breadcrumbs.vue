@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading" class="container">
+  <div v-if="!loading">
     <div class="breadcrumbs">
       <div v-for="(crumb, index) in breadcrumbs">
         <NuxtLink :to="crumb.path">{{ crumb.name }}</NuxtLink>

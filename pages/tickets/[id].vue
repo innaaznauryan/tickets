@@ -36,7 +36,6 @@ const {id} = useRoute().params
 const loading = ref(true)
 
 await getSingleTicket(id)
-loading.value = false
 
 definePageMeta({
   breadcrumbs: [
@@ -45,6 +44,10 @@ definePageMeta({
     {name: "Ticket"}
   ]
 })
+
+onMounted(() => {
+  loading.value = false
+})
 </script>
 
 <style lang="scss" scoped>
@@ -52,7 +55,7 @@ definePageMeta({
   box-shadow: 0 0px 20px 3px rgb(0 0 0 / 0.1);
   padding: 20px;
   border-radius: 5px;
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
 
   .ticketField {
@@ -90,7 +93,7 @@ definePageMeta({
 
 @media(max-width: 768px) {
   .ticketContainer {
-    width: 90%;
+    width: 100%;
   }
 }
 </style>

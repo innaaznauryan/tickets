@@ -103,7 +103,7 @@ definePageMeta({
 
 <style lang="scss" scoped>
 .profileContainer {
-  width: 40%;
+  width: 60%;
   margin: 0 auto 20px;
   box-shadow: 0 0px 20px 3px rgb(0 0 0 / 0.1);
   padding: 20px;
@@ -165,7 +165,7 @@ p {
 
 @media(max-width: 768px) {
   .profileContainer {
-    width: 90%;
+    width: 100%;
   }
 }
 </style>
